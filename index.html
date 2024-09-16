@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buttons</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        a {
+            position: relative; /* Added to ensure pseudo-elements are positioned relative to the <a> */
+            display: inline-block; /* Ensure the <a> element is inline-block so dimensions can be set */
+            padding: 10px 20px; /* Some padding to make the button visible */
+            color: white; /* Text color */
+            text-decoration: none; /* Remove underline */
+            overflow: hidden; /* Ensure pseudo-elements don’t overflow */
+        }
+
+        a span {
+            color: inherit; /* Ensure the span inherits the color from the <a> */
+        }
+
+        a:hover {
+            background: var(--clr);
+            box-shadow: 0 0 10px var(--clr),
+                        0 0 30px var(--clr),
+                        0 0 60px var(--clr),
+                        0 0 100px var(--clr);
+        }
+
+        a::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 400%;
+            background-color: var(--clr);
+            transition: 1s;
+            animation: animated 2s linear infinite;
+            animation-delay: calc(0.33 * var(--i));
+            top: -50%; /* Adjusted to position the pseudo-element correctly */
+            left: -50%;
+        }
+
+        a:hover::before {
+            width: 120%;
+        }
+
+        @keyframes animated {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        a::after {
+            content: "";
+            position: absolute;
+            background: #0e1538;
+            inset: 4px;
+            transition: 0.5s;
+        }
+
+        a:hover::after {
+            background: var(--clr);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="#" style="--clr:#ff22bb; --i:0">
+            <span>Button</span>
+        </a>
+        <div class="container">
+            <a href="#" style="--clr:#00ccff; --i:1">
+                <span>Button</span>
+            </a>
+            <div class="container">
+                <a href="#" style="--clr:#22e622; --i:2">
+                    <span>Button</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
